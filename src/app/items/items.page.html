@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back" size="large" (click)="goBack()"></ion-icon>
+    </ion-buttons>
+    <div style="display: flex; align-items: center; margin-right: 20px">
+      <ion-title>{{name}}</ion-title>
+
+      <ion-icon
+        name="basket-outline"
+        style="cursor: pointer"
+        size="large"
+        [routerLink]="['/cart']"
+      ></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{name}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card-content>
+    <ion-list>
+      <div
+        *ngFor="let i of items"
+        style="
+          background-color: #000000d6;
+          display: flex;
+          margin-bottom: 15px;
+          border-radius: 8px;
+          border: none;
+          overflow: hidden;
+        "
+      >
+        <img
+          alt="{{i.name}}"
+          src="{{i.thumbnail}}"
+          style="height: 100px; width: 100px"
+        />
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-left: 10px;
+            margin-top: 5px;
+          "
+        >
+          <h1 style="color: white">{{i.name}}</h1>
+          <p style="color: white; font-weight: lighter">{{i.description}}</p>
+
+          <div
+            style="
+              display: flex;
+              width: 90%;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <h3 style="color: white">{{i.price}} EGP</h3>
+            <div
+              style="
+                color: black;
+                background-color: white;
+                padding: 0px 12px;
+                border-radius: 8px;
+                cursor: pointer;
+                border: none;
+              "
+              (click)="addToBasket(i)"
+            >
+              <span style="font-size: 25px">+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+  </ion-card-content>
+</ion-content>

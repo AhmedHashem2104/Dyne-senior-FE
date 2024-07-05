@@ -1,0 +1,130 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back" size="large" (click)="goBack()"></ion-icon>
+    </ion-buttons>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Cart</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card-content>
+    <ion-list>
+      <div
+        *ngFor="let i of cart"
+        style="
+          background-color: #000000d6;
+          display: flex;
+          margin-bottom: 15px;
+          border-radius: 8px;
+          border: none;
+          overflow: hidden;
+        "
+      >
+        <img
+          alt="{{i.name}}"
+          src="{{i.thumbnail}}"
+          style="height: 100px; width: 100px"
+        />
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-left: 10px;
+            margin-top: 5px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              width: 90%;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                height: 100%;
+              "
+            >
+              <h1 style="color: white">{{i.name}}</h1>
+
+              <h3 style="color: white">{{i.price}} EGP</h3>
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+              "
+            >
+              <div
+                style="
+                  color: black;
+                  background-color: white;
+                  padding: 0px 10px;
+                  border-radius: 8px;
+                  cursor: pointer;
+                  border: none;
+                  text-align: center;
+                "
+                (click)="addToBasket(i)"
+              >
+                <span style="font-size: 20px">+</span>
+              </div>
+
+              <div style="color: white; text-align: center">
+                <span style="font-size: 18px">{{i.count}}</span>
+              </div>
+
+              <div
+                style="
+                  color: black;
+                  background-color: white;
+                  padding: 0px 10px;
+                  border-radius: 8px;
+                  cursor: pointer;
+                  border: none;
+                  text-align: center;
+                "
+                (click)="removeFromBasket(i)"
+              >
+                <span style="font-size: 20px">-</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+  </ion-card-content>
+  <div
+    style="
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      align-items: center;
+      bottom: 20px;
+      height: 65px;
+      width: 90%;
+      left: 20px;
+      background-color: #4a4a4a;
+      padding: 0px 20px;
+      color: white;
+      border-radius: 8px;
+    "
+    (click)="createOrder()"
+  >
+    <h3>Order</h3>
+    <h3>{{orderAmount}} EGP</h3>
+  </div>
+</ion-content>
